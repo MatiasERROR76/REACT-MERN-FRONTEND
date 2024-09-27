@@ -9,6 +9,7 @@ import { es } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import { useCalendarStore, useUiStore } from "../../hooks";
 import { useDispatch } from "react-redux";
+import { getEnvVariables } from "../../helpers";
 
 registerLocale("es", es);
 
@@ -23,7 +24,11 @@ const customStyles = {
   },
 };
 
-Modal.setAppElement("#root");
+// dos posibles errores
+
+if (getEnvVariables().VITE_MODE !== "test") {
+  Modal.setAppElement("#root");
+}
 
 export const CalendarModal = () => {
   const { isDateModalOpen, closeDateModal } = useUiStore();

@@ -2,7 +2,6 @@ import { useCalendarStore, useUiStore } from "../../hooks";
 
 export const FabDelete = () => {
   const { startDeletingEvent, hasEventSelected } = useCalendarStore();
-  const { closeDateModal } = useUiStore();
 
   const handleDelete = () => {
     startDeletingEvent();
@@ -10,10 +9,11 @@ export const FabDelete = () => {
 
   return (
     <button
+      aria-label="btn-delete"
       className="btn btn-danger fab-danger"
       onClick={handleDelete}
       style={{
-        display: hasEventSelected && closeDateModal ? "" : "none",
+        display: hasEventSelected ? "" : "none",
       }}
     >
       <i className="fas fa-trash-alt"></i>
